@@ -41,6 +41,7 @@ from yolov8.ultralytics.yolo.utils.plotting import Annotator, colors, save_one_b
 
 from trackers.multi_tracker_zoo import create_tracker
 
+
 @torch.no_grad()
 def run(
         source='0',
@@ -77,7 +78,8 @@ def run(
         vid_stride=1,  # video frame-rate stride
         retina_masks=False,
 ):
-
+    torch.cuda.is_available()==True
+    print(torch.cuda.is_available())
     source = str(source)
     save_img = not nosave and not source.endswith('.txt')  # save inference images
     is_file = Path(source).suffix[1:] in (VID_FORMATS)
@@ -274,7 +276,7 @@ def run(
                                 save_one_box(np.array(bbox, dtype=np.int16), imc, file=save_dir / 'crops' / txt_file_name / names[c] / f'{id}' / f'{p.stem}.jpg', BGR=True)
                             if cont % 5 == 0:
                                 os.makedirs('fotos/'+label[0:9], exist_ok=True)
-                                cv2.imwrite('E:/Proyectos/tesis/yolov8_tracking/fotos/'+label[0:9]+'/foto'+str(cont)+'.png',imo[int(bbox[1]):int(bbox[1])+(int(output[3]) - int(output[1])),int(bbox[0]):int(bbox[0])+(int(output[2]) - int(output[0]))])
+                                cv2.imwrite('E:/Proyectos/tesis/yolov8_tracking/fotos/'+label[0:8]+'/foto'+str(cont)+'.png',imo[int(bbox[1]):int(bbox[1])+(int(output[3]) - int(output[1])),int(bbox[0]):int(bbox[0])+(int(output[2]) - int(output[0]))])
             else:
                 pass
                 #tracker_list[i].tracker.pred_n_update_all_tracks()
