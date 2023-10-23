@@ -16,7 +16,10 @@ import torch
 import torch.backends.cudnn as cudnn
 
 FILE = Path(__file__).resolve()
-ROOT = FILE.parents[0]  # yolov5 strongsort root directory
+##ROOT = FILE.parents[0]  # yolov5 strongsort root directory
+##print(ROOT)
+ROOT = os.getcwd()
+##print(ROOT2)
 WEIGHTS = ROOT / 'weights'
 
 if str(ROOT) not in sys.path:
