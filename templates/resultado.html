@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/estilos_resultados.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="camara">
+        <h1>Datasets Generados</h1>
+        <ul class="lista-externa">
+            {% for carpeta in carpetas %}
+                {% set rowloop = loop %}
+                <li class="elemento-externo">{{ carpeta }}</li>
+                <ul class="lista-interna">
+                    {% for archivo in archivos %}
+                        {% set rowloop2 = loop %}
+                            {% for archi in archivo %}
+                                {% if rowloop.index == rowloop2.index %}
+                                    <li class="elemento-interno">{{ archi }}</li>
+                                {% endif %}
+                            {% endfor %}
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        </ul>
+        <form action="/descargar_carpeta" method="GET">
+            <button class="boton" type="submit">Descargar Carpeta</button>
+        </form>
+
+        <form action="/eliminar" method="GET">
+            <button class="boton2" type="submit">Eliminar para crear nuevo</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -21,5 +21,3 @@ val_utils/
 *.onnx
 *.engine
 
-# interactive plots
-*.html
