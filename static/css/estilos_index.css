@@ -1,0 +1,68 @@
+body{
+    background-color: black;
+    background-image: url("/static/images/fondo_index.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 95vh;
+}
+
+h1 {
+    color: white;
+}
+
+.menu{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    height: 100%;
+    background-color: rgba(133, 133, 133, 0.2);
+}
+
+.fila{
+    height: 50%;
+}
+
+.columna-arriba{
+    display: flex;
+    align-items: flex-start;
+    padding-top: 4rem;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+    padding-bottom: 2rem;
+    color: white;
+}
+
+.columna-abajo{
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    height: 100%;
+    padding-bottom: 2rem;
+}
+
+.columna-abajo form{
+    text-align: center;
+}
+
+.columna-abajo form p{
+    color: white;
+}
+
+.columna-abajo form .grabar{
+    padding: 10px 20px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(56, 56, 56);
+    font-weight: 700;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.columna-abajo form .grabar:hover {
+  background-color: #c2c2c2;
+}
+
+.columna-abajo form .grabar:active {
+  background-color: #929292;
+}
