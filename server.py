@@ -157,23 +157,25 @@ def run(
     curr_frames, prev_frames = [None] * bs, [None] * bs
     cont = 0
     for frame_idx, batch in enumerate(dataset):
-        inicio = time.time()
+        inicio2 = time.time()
         cont=cont+1
         global vid_cap
         path, im, im0s, vid_cap, s = batch
         
         visualize = increment_path(save_dir / Path(path[0]).stem, mkdir=True) if visualize else False
+        
         with dt[0]:
             im = torch.from_numpy(im).to(device)
             im = im.half() if half else im.float()  # uint8 to fp16/32
             im /= 255.0  # 0 - 255 to 0.0 - 1.0
             if len(im.shape) == 3:
                 im = im[None]  # expand for batch dim
-        
+
         # Inference
+        
         with dt[1]:
             preds = model(im, augment=augment, visualize=visualize)
-
+        
         # Apply NMS
         with dt[2]:
             if is_seg:
@@ -182,7 +184,7 @@ def run(
                 proto = preds[1][-1]
             else:
                 p = non_max_suppression(preds, conf_thres, iou_thres, classes, agnostic_nms, max_det=max_det)
-        
+
         # Process detections
         
         for i, det in enumerate(p):  # detections per image
@@ -325,7 +327,8 @@ def run(
         _, bufer = cv2.imencode(".jpg", im0)
         ims = bufer.tobytes()
         yield b"--frame\r\nContent-Type: image/jpeg\r\n\r\n" + ims + b"\r\n"
-        fin = time.time()
+        fin2 = time.time()
+        print(fin2-inicio2, " Prediccion")
         # Print total time (preprocessing + inference + NMS + tracking)
         LOGGER.info(f"{s}{'' if len(det) else '(no detections), '}{sum([dt.dt for dt in dt if hasattr(dt, 'dt')]) * 1E3:.1f}ms")
 

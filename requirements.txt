@@ -1,5 +1,6 @@
 # pip install -r requirements.txt
-opencv-python==4.8.1.78
+#OpenCV solo se instala si esta en windows
+#opencv-python==4.8.1.78
 torch==2.0.0
 ultralytics==8.0.20
 face-recognition==1.3.0
