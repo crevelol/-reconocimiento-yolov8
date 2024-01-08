@@ -288,9 +288,9 @@ def run(
                             if save_crop:
                                 txt_file_name = txt_file_name if (isinstance(path, list) and len(path) > 1) else ''
                                 save_one_box(np.array(bbox, dtype=np.int16), imc, file=save_dir / 'crops' / txt_file_name / names[c] / f'{id}' / f'{p.stem}.jpg', BGR=True)
-                            if cont % 5 == 0:
-                                os.makedirs('fotos/'+label[0:9], exist_ok=True)
-                                cv2.imwrite('fotos/'+label[0:8]+'/foto'+str(cont)+'.png',imo[int(bbox[1]):int(bbox[1])+(int(output[3]) - int(output[1])),int(bbox[0]):int(bbox[0])+(int(output[2]) - int(output[0]))])
+                            os.makedirs('fotos/'+f'{id} {names[c]}', exist_ok=True)
+                            if len(os.listdir('fotos/'+f'{id} {names[c]}')) <= 14:
+                                cv2.imwrite('fotos/'+f'{id} {names[c]}'+'/foto'+str(cont)+'.png',imo[int(bbox[1]):int(bbox[1])+(int(output[3]) - int(output[1])),int(bbox[0]):int(bbox[0])+(int(output[2]) - int(output[0]))])
             else:
                 pass
                 #tracker_list[i].tracker.pred_n_update_all_tracks()
